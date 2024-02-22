@@ -40,7 +40,8 @@ int main()
     rectangle.setFillColor(sf::Color::Green);
     rectangle.setOutlineColor(sf::Color::Magenta);
     rectangle.setOutlineThickness(20);
-    rectangle.setPosition(145, 145);
+    rectangle.setPosition(185, 185);
+    rectangle.setOrigin(40, 40);
 
     sf::CircleShape circle;
     circle.setRadius(85);
@@ -106,6 +107,8 @@ int main()
             count = 0;
             startTime = timeThisFrame;
         }
+
+        rectangle.rotate(0.1f);
     }
 
     std::cout << "SnakeGame: Finished" << std::endl;
