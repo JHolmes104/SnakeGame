@@ -7,6 +7,7 @@
 */
 
 #include <iostream>
+#include <sstream>
 
 // SFML header file for graphics, there are also ones for Audio, Window, System and Network
 #include <SFML/Graphics.hpp>
@@ -56,6 +57,22 @@ int main()
     pentagon.setPoint(2, sf::Vector2f(50, 50));
     pentagon.setPoint(3, sf::Vector2f(320, 65));
     pentagon.setFillColor(sf::Color::Blue);
+    
+    sf::Font font;
+    font.loadFromFile("Anta-Regular.ttf");
+
+    sf::Text text;
+    text.setFont(font);
+    text.setString("Hello World");
+    text.setCharacterSize(24);
+    text.setFillColor(sf::Color::Yellow);
+    text.setPosition(sf::Vector2f(550, 0));
+    
+    sf::Clock clock;
+
+    sf::Time startTime = clock.getElapsedTime();
+    startTime.asSeconds();
+    int count = 0;
 
     while (window.isOpen())
     {
@@ -72,11 +89,23 @@ int main()
 
         window.clear(sf::Color::Black);
         window.draw(pentagon);
-        window.draw(pentagon);
         window.draw(circle);
         window.draw(rectangle);
+        window.draw(text);
 
         window.display();
+        
+        sf::Time timeThisFrame = clock.getElapsedTime();
+        count++;
+        if (timeThisFrame.asSeconds() - startTime.asSeconds() >= 5)
+        {
+            std::ostringstream oss;
+            count = count / 5;
+            oss << "Frame Rate: " << count;
+            text.setString(oss.str());
+            count = 0;
+            startTime = timeThisFrame;
+        }
     }
 
     std::cout << "SnakeGame: Finished" << std::endl;
