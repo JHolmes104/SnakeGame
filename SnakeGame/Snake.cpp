@@ -5,40 +5,39 @@ Snake::Snake()
 
 }
 
-Snake::Snake(int xInput, int yInput)
+Snake::Snake(int xInput, int yInput, int playerInput)
 {
 	x - xInput;
 	y = yInput;
+	playerNumber = playerInput;
+	inWater = false;
+	nextSnake = nullptr;
 }
 
-int Snake::getX()
+Snake::Snake(int xInput, int yInput, int playerInput, Snake* nextSnakeInput)
+{
+	x - xInput;
+	y = yInput;
+	playerNumber = playerInput;
+	nextSnake = nextSnakeInput;
+}
+
+int Snake::getX(void)
 {
 	return x;
 }
 
-int Snake::getY()
+void Snake::setX(int xInput)
+{
+	x += xInput;
+}
+
+int Snake::getY(void)
 {
 	return y;
 }
 
-void Snake::capacityChange()
+void Snake::setY(int yInput)
 {
-	if (inWater == true)
-	{
-		currentLungCapacity -= capacityDecrease;
-	}
-	else
-	{
-		currentLungCapacity += capacityIncrease;
-	}
-
-	if (currentLungCapacity < 0)
-	{
-		currentLungCapacity = 0;
-	}
-
-	if (currentLungCapacity > maxLungCapacity)
-	{
-		currentLungCapacity = maxLungCapacity;
-	}
+	y += yInput;
 }

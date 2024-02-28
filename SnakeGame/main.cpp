@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <sstream>
+#include "Game.h"
 
 // SFML header file for graphics, there are also ones for Audio, Window, System and Network
 #include <SFML/Graphics.hpp>
@@ -34,7 +35,7 @@ int main()
         // Display the window contents
     // }
 
-    sf::RectangleShape rectangle;
+    /*sf::RectangleShape rectangle;
     rectangle.setSize(sf::Vector2f(80, 80));
     rectangle.setOutlineThickness(20);
     rectangle.setFillColor(sf::Color::Green);
@@ -73,9 +74,12 @@ int main()
 
     sf::Time startTime = clock.getElapsedTime();
     startTime.asSeconds();
-    int count = 0;
+    int count = 0;*/
 
-    while (window.isOpen())
+    Game game(20, 20, 20, 20, 20);
+    game.update();
+
+    /*while (window.isOpen())
     {
         sf::Event event;
         window.pollEvent(event);
@@ -113,5 +117,5 @@ int main()
 
     std::cout << "SnakeGame: Finished" << std::endl;
 
-    return 0;
+    return 0;*/
 }

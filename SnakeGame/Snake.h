@@ -5,17 +5,20 @@ private:
 	int x;
 	int y;
 	
-	int currentLungCapacity;
-	int maxLungCapacity;
-	int capacityDecrease;
-	int capacityIncrease;
 	bool inWater;
+	int playerNumber;
+
 public:
 	Snake(void);
-	Snake(int xInput, int yInput);
+	Snake(int xInput, int yInput, int playerInput);
+	Snake(int xInput, int yInput, int playerNumberInput, Snake* nextSnakeInput);
+
 	int getX(void);
+	void setX(int xInput);
 	int getY(void);
-	void capacityChange(void);
+	void setY(int yInput);
+	int getPlayerNumber(void);
+	
 	Snake* nextSnake;
 };
 
