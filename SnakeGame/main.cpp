@@ -20,7 +20,7 @@ int main()
     // TODO: 
     // Create an instance of the SFML RenderWindow type which represents the display
     // and initialise its size and title text    
-    sf::RenderWindow window(sf::VideoMode(800, 600), "MyWindow");
+    //sf::RenderWindow window(sf::VideoMode(800, 600), "MyWindow");
 
     // We can still output to the console window
     std::cout << "SnakeGame: Starting" << std::endl;
@@ -76,9 +76,6 @@ int main()
     startTime.asSeconds();
     int count = 0;*/
 
-    Game game(20, 20, 20, 20, 20);
-    game.update();
-
     /*while (window.isOpen())
     {
         sf::Event event;
@@ -115,7 +112,12 @@ int main()
         rectangle.rotate(0.1f);
     }
 
-    std::cout << "SnakeGame: Finished" << std::endl;
+    std::cout << "SnakeGame: Finished" << std::endl;*/
 
-    return 0;*/
+
+
+    Game game(100, 100, 100, 100, 0.15f);
+    game.update();
+
+    return 0;
 }

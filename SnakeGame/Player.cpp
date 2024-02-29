@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "Snake.h"
+
 #include <SFML/Graphics.hpp>
 
 
@@ -7,13 +9,20 @@ Player::Player()
 
 }
 
-Player::Player(int playerNumberInput, Game* thisGame)
+Player::Player(int playerNumberInput, int maxCapacityInput)
 {
 	playerNumber = playerNumberInput;
-	currentGame = thisGame;
-	currentLungCapacity = currentGame->getLungCapacity();
-	Snake snake = Snake(100, 100, 1);
+	currentLungCapacity = maxCapacityInput;
+	maxLungCapacity = maxCapacityInput;
+	Snake* snake = new Snake(100, 100, playerNumberInput);
+	snakeHead = snake;
+	size = 1;
 	direction = 1;
+}
+
+Player::~Player()
+{
+	snakeHead->~Snake();
 }
 
 void Player::setDirection()
@@ -79,4 +88,14 @@ void Player::move(void)
 	default:
 		break;
 	}
+}
+
+int Player::getSize(void)
+{
+	return size;
+}
+
+void Player::draw(sf::RenderWindow& window)
+{
+	snakeHead->draw(window);
 }

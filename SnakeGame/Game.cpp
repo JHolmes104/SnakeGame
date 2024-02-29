@@ -1,4 +1,10 @@
 #include "Game.h"
+#include "Player.h"
+#include "Snake.h"
+
+#include <iostream>
+#include <sstream>
+
 #include <SFML/Graphics.hpp>
 
 Game::Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCapInput, float speedInput)
@@ -12,23 +18,51 @@ Game::Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCap
 
 	moveSpeed = speedInput;
 
-	player1 = Player(1, this);
+	Player* player = new Player(1, lungCapacity);
+	player1 = player;
+}
+
+void Game::checkDeath(sf::RenderWindow& window)
+{
+	if (player1->snakeHead->getX() <= 0 || player1->snakeHead->getX() >= 800)
+	{
+		player1->~Player();
+		window.close();
+	}
+	if (player1->snakeHead->getY() <= 0 || player1->snakeHead->getX() >= 600)
+	{
+		player1->~Player();
+		window.close();
+	}
 }
 
 void Game::update()
 {
-	sf::RectangleShape snake;
-	snake.setSize(sf::Vector2f(20, 20));
-	snake.setFillColor(sf::Color::Green);
-	snake.setPosition(player1.snakeHead->getX(), player1.snakeHead->getY());
-	snake.setOrigin(10, 10);
-
-	sf::RenderWindow window(sf::VideoMode(800, 600), "MyWindow");
+	sf::RenderWindow window(sf::VideoMode(800, 600), "GameWindow");
 	while (window.isOpen())
 	{
-		player1.setDirection();
-		player1.move();
-		snake.setPosition(player1.snakeHead->getX(), player1.snakeHead->getY());
+		sf::Event event;
+		window.pollEvent(event);
+		switch (event.type)
+		{
+		case sf::Event::Closed:
+			window.close();
+			break;
+		default:
+			break;
+		}
+
+		window.clear(sf::Color::Black);
+		player1->draw(window);
+
+		window.display();
+
+		player1->setDirection();
+		player1->move();
+		sf::Time sleepTime = sf::seconds(moveSpeed);
+		sf::sleep(sleepTime);
+		
+		checkDeath(window);
 	}
 }
 

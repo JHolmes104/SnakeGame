@@ -1,6 +1,7 @@
 #pragma once
-#include "Player.h"
 #include <SFML/Graphics.hpp>
+
+class Player;
 
 class Game
 {
@@ -14,7 +15,7 @@ private:
 
 	float moveSpeed;
 
-	Player player1;
+	Player* player1;
 
 	sf::Window window;
 
@@ -30,5 +31,9 @@ public:
 
 	int getWaterCapacity(void);
 	float getWaterDrainRate(void);
+
+	void updateTrial(void);
+
+	void checkDeath(sf::RenderWindow& window);
 };
 

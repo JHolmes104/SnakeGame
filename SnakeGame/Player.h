@@ -1,6 +1,8 @@
 #pragma once
-#include "Snake.h"
-#include "Game.h"
+#include <SFML/Graphics.hpp>
+
+class Snake;
+
 class Player
 {
 private:
@@ -8,17 +10,21 @@ private:
 	int direction;
 	int size;
 	int currentLungCapacity;
+	int maxLungCapacity;
 	int playerNumber;
-
-	Game* currentGame;
 
 public:
 	Player();
-	Player(int playerNumberInput, Game* thisGame);
+	Player(int playerNumberInput, int maxCapacityInput);
+
+	~Player();
 
 	Snake* snakeHead;
 
 	void setDirection(void);
 
+	void draw(sf::RenderWindow& window);
+
 	void move(void);
+	int getSize(void);
 };
