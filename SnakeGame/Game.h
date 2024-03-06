@@ -23,7 +23,9 @@ public:
 	Game();
 	Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCapInput, float speedInput);
 
-	void update();
+	void update(void);
+
+	void draw(sf::RenderWindow& window);
 	
 	int getLungCapacity(void);
 	int getCapacityDecrease(void);
@@ -31,8 +33,6 @@ public:
 
 	int getWaterCapacity(void);
 	float getWaterDrainRate(void);
-
-	void updateTrial(void);
 
 	void checkDeath(sf::RenderWindow& window);
 };

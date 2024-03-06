@@ -29,7 +29,7 @@ void Game::checkDeath(sf::RenderWindow& window)
 		player1->~Player();
 		window.close();
 	}
-	if (player1->snakeHead->getY() <= 0 || player1->snakeHead->getX() >= 600)
+	if (player1->snakeHead->getY() <= 0 || player1->snakeHead->getY() >= 600)
 	{
 		player1->~Player();
 		window.close();
@@ -52,10 +52,7 @@ void Game::update()
 			break;
 		}
 
-		window.clear(sf::Color::Black);
-		player1->draw(window);
-
-		window.display();
+		draw(window);
 
 		player1->setDirection();
 		player1->move();
@@ -64,6 +61,14 @@ void Game::update()
 		
 		checkDeath(window);
 	}
+}
+
+void Game::draw(sf::RenderWindow& window)
+{
+	window.clear(sf::Color::Black);
+	player1->draw(window);
+
+	window.display();
 }
 
 int Game::getLungCapacity(void)
