@@ -99,3 +99,14 @@ void Player::draw(sf::RenderWindow& window)
 {
 	snakeHead->draw(window);
 }
+
+int Player::getScore(void)
+{
+	return score;
+}
+
+void Player::setScore(void)
+{
+	score++;
+	size++;
+}

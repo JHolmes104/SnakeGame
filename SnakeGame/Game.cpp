@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "Snake.h"
+#include "Food.h"
 
 #include <iostream>
 #include <sstream>
@@ -22,22 +23,15 @@ Game::Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCap
 	player1 = player;
 }
 
-void Game::checkDeath(sf::RenderWindow& window)
-{
-	if (player1->snakeHead->getX() <= 0 || player1->snakeHead->getX() >= 800)
-	{
-		player1->~Player();
-		window.close();
-	}
-	if (player1->snakeHead->getY() <= 0 || player1->snakeHead->getY() >= 600)
-	{
-		player1->~Player();
-		window.close();
-	}
-}
-
 void Game::update()
 {
+	srand(time(0));
+	for (int i = 0; i < 5; i++)
+	{
+		Food* foodInitial = new Food(screenWidth, screenHeight, offset);
+		food[i] = foodInitial;
+	}
+
 	sf::RenderWindow window(sf::VideoMode(800, 600), "GameWindow");
 	while (window.isOpen())
 	{
@@ -51,7 +45,6 @@ void Game::update()
 		default:
 			break;
 		}
-
 		draw(window);
 
 		player1->setDirection();
@@ -59,6 +52,7 @@ void Game::update()
 		sf::Time sleepTime = sf::seconds(moveSpeed);
 		sf::sleep(sleepTime);
 		
+		foodCollision();
 		checkDeath(window);
 	}
 }
@@ -68,6 +62,14 @@ void Game::draw(sf::RenderWindow& window)
 	window.clear(sf::Color::Black);
 	player1->draw(window);
 
+	for (int i = 0; i < 5; i++)
+	{
+		if (food[i]->getEaten() == false)
+		{
+			food[i]->draw(window);
+		}
+	}
+	
 	window.display();
 }
 
@@ -88,7 +90,40 @@ int Game::getWaterCapacity(void)
 {
 	return waterCapacity;
 }
+
 float Game::getWaterDrainRate(void)
 {
 	return waterDrainRate;
+}
+
+void Game::checkDeath(sf::RenderWindow& window)
+{
+	if (player1->snakeHead->getX() <= 0 || player1->snakeHead->getX() >= 800)
+	{
+		player1->~Player();
+		window.close();
+	}
+	if (player1->snakeHead->getY() <= 0 || player1->snakeHead->getY() >= 600)
+	{
+		player1->~Player();
+		window.close();
+	}
+}
+
+void Game::foodCollision(void)
+{
+	for (int i = 0; i < 5; i++)
+	{
+		if (food[i]-> getEaten() == false)
+		{
+			if (player1->snakeHead->getX() < (food[i]->getX() + 15) && player1->snakeHead->getX() > (food[i]->getX() - 15))
+			{
+				if (player1->snakeHead->getY() < (food[i]->getY() + 15) && player1->snakeHead->getY() > (food[i]->getY() - 15))
+				{
+					player1->setScore();
+					food[i]->eat();
+				}
+			}
+		}
+	}
 }

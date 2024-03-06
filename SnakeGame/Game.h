@@ -1,11 +1,18 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+class Food;
 class Player;
+
+int constexpr screenWidth = 800;
+int constexpr screenHeight = 600;
+int constexpr offset = 20;
 
 class Game
 {
 private:
+	Food* food[5];
+
 	int lungCapacity;
 	int capacityDecrease;
 	int capacityIncrease;
@@ -35,5 +42,6 @@ public:
 	float getWaterDrainRate(void);
 
 	void checkDeath(sf::RenderWindow& window);
+	void foodCollision(void);
 };
 
