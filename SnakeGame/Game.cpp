@@ -15,13 +15,15 @@ Game::Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCap
 	capacityIncrease = lCapIncreaseInput;
 	
 	waterCapacity = wCapInput;
+	maxWaterCapacity = wCapInput;
 	waterDrainRate = waterCapacity / 90;
 
 	moveSpeed = speedInput;
 
 	Player* player = new Player(1, lungCapacity);
 	player1 = player;
-	clock = sf::Clock();
+	movementClock = sf::Clock();
+	waterDrainClock = sf::Clock();
 }
 
 void Game::update()
@@ -52,11 +54,22 @@ void Game::update()
 
 		player1->setDirection();
 		sf::Time sleepTime = sf::seconds(moveSpeed);
-		if (clock.getElapsedTime() >= sleepTime)
+		if (movementClock.getElapsedTime() >= sleepTime)
 		{
 			player1->move();
-			clock.restart();
+			movementClock.restart();
 			snakeCollision(window);
+		}
+
+		if (waterDrainClock.getElapsedTime() >= sf::seconds(1.0f))
+		{
+			waterCapacity -= waterDrainRate;
+			waterDrainClock.restart();
+		}
+
+		if (waterCapacity == 0)
+		{
+			window.close();
 		}
 
 		checkOffscreen(window);
@@ -68,6 +81,13 @@ void Game::update()
 void Game::draw(sf::RenderWindow& window)
 {
 	window.clear(sf::Color::Black);
+	
+	sf::RectangleShape water;
+	water.setPosition(0, screenHeight - waterCapacity);
+	water.setFillColor(sf::Color::Blue);
+	water.setSize(sf::Vector2f(screenWidth, waterCapacity));
+	window.draw(water);
+	
 	player1->draw(window);
 
 	for (int i = 0; i < 5; i++)
@@ -77,7 +97,7 @@ void Game::draw(sf::RenderWindow& window)
 			food[i]->draw(window);
 		}
 	}
-	
+
 	window.display();
 }
 

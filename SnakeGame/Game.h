@@ -13,13 +13,15 @@ class Game
 private:
 	Food* food[5];
 
-	sf::Clock clock;
+	sf::Clock movementClock;
+	sf::Clock waterDrainClock;
 
 	int lungCapacity;
 	int capacityDecrease;
 	int capacityIncrease;
 	
 	int waterCapacity;
+	int maxWaterCapacity;
 	float waterDrainRate;
 
 	float moveSpeed;
