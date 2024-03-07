@@ -21,6 +21,7 @@ Game::Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCap
 
 	Player* player = new Player(1, lungCapacity);
 	player1 = player;
+	clock = sf::Clock();
 }
 
 void Game::update()
@@ -47,13 +48,20 @@ void Game::update()
 		}
 		draw(window);
 
-		player1->setDirection();
-		player1->move();
-		sf::Time sleepTime = sf::seconds(moveSpeed);
-		sf::sleep(sleepTime);
-		
 		foodCollision();
-		checkDeath(window);
+
+		player1->setDirection();
+		sf::Time sleepTime = sf::seconds(moveSpeed);
+		if (clock.getElapsedTime() >= sleepTime)
+		{
+			player1->move();
+			clock.restart();
+			snakeCollision(window);
+		}
+
+		checkOffscreen(window);
+
+		player1->setSnakeCreated(false);
 	}
 }
 
@@ -96,7 +104,7 @@ float Game::getWaterDrainRate(void)
 	return waterDrainRate;
 }
 
-void Game::checkDeath(sf::RenderWindow& window)
+void Game::checkOffscreen(sf::RenderWindow& window)
 {
 	if (player1->snakeHead->getX() <= 0 || player1->snakeHead->getX() >= 800)
 	{
@@ -124,6 +132,31 @@ void Game::foodCollision(void)
 					food[i]->eat();
 				}
 			}
+		}
+	}
+}
+
+void Game::snakeCollision(sf::RenderWindow& window)
+{
+	if (player1->getSnakeCreated() == false)
+	{
+		int x = player1->snakeHead->getX();
+		int y = player1->snakeHead->getY();
+
+		Snake* sHead = player1->snakeHead;
+		Snake* currentSnake = player1->snakeHead->nextSnake;
+		while (currentSnake != nullptr)
+		{
+			if (sHead->getX() < (currentSnake->getX() + 15) && sHead->getX() > (currentSnake->getX() - 15))
+			{
+				if (sHead->getY() < (currentSnake->getY() + 15) && sHead->getY() > (currentSnake->getY() - 15))
+				{
+					player1->~Player();
+					window.close();
+					std::cout << "Collision detected";
+				}
+			}
+			currentSnake = currentSnake->nextSnake;
 		}
 	}
 }

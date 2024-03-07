@@ -13,6 +13,8 @@ class Game
 private:
 	Food* food[5];
 
+	sf::Clock clock;
+
 	int lungCapacity;
 	int capacityDecrease;
 	int capacityIncrease;
@@ -41,7 +43,8 @@ public:
 	int getWaterCapacity(void);
 	float getWaterDrainRate(void);
 
-	void checkDeath(sf::RenderWindow& window);
+	void checkOffscreen(sf::RenderWindow& window);
 	void foodCollision(void);
+	void snakeCollision(sf::RenderWindow& window);
 };
 

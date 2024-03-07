@@ -71,6 +71,7 @@ void Player::setDirection()
 
 void Player::move(void)
 {
+	snakeHead->shiftSnakes(snakeHead->getX(), snakeHead->getY());
 	switch (direction)
 	{
 	case 1:
@@ -109,4 +110,17 @@ void Player::setScore(void)
 {
 	score++;
 	size++;
+	Snake* nextSnake = new Snake(snakeHead->getX(), snakeHead->getY(), playerNumber);
+	snakeHead->setNextSnake(nextSnake);
+	snakeCreated = true;
+}
+
+bool Player::getSnakeCreated(void)
+{
+	return snakeCreated;
+}
+
+void Player::setSnakeCreated(bool newSC)
+{
+	snakeCreated = newSC;
 }

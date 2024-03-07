@@ -10,21 +10,24 @@ private:
 	bool inWater;
 	int playerNumber;
 
-	Snake* nextSnake;
-
 public:
 	Snake(void);
 	Snake(int xInput, int yInput, int playerInput);
 
 	~Snake();
 
+	Snake* nextSnake;
+
 	int getX(void);
 	void setX(int xInput);
+
 	int getY(void);
 	void setY(int yInput);
+	
 	int getPlayerNumber(void);
 
 	void draw(sf::RenderWindow& window);
-	void setNextSnake(void);
+	void setNextSnake(Snake* newSnake);
+	void shiftSnakes(int newX, int newY);
 };
 

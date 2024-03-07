@@ -1,5 +1,5 @@
 #include "Snake.h"
-
+#include <iostream>
 #include <SFML/Graphics.hpp>
 
 Snake::Snake()
@@ -58,9 +58,8 @@ void Snake::draw(sf::RenderWindow& window)
 	sf::RectangleShape snake;
 	snake.setSize(sf::Vector2f(20, 20));
 	snake.setFillColor(sf::Color::Green);
-
-	snake.setPosition(getX(), getY());
 	snake.setOrigin(10, 10);
+	snake.setPosition(getX(), getY());
 	window.draw(snake);
 
 	if (nextSnake != nullptr)
@@ -69,7 +68,30 @@ void Snake::draw(sf::RenderWindow& window)
 	}
 }
 
-void Snake::setNextSnake(void)
+void Snake::setNextSnake(Snake* newSnake)
 {
+	if (nextSnake == nullptr)
+	{
+		std::cout << "Nullptr" << std::endl << x << ", " << y << std::endl;
+		nextSnake = newSnake;
+	}
 
+	else
+	{
+		std::cout << "No nullptr" << std::endl;
+		newSnake->setX(nextSnake->getX());
+		newSnake->setY(nextSnake->getY());
+		nextSnake->setNextSnake(newSnake);
+	}
+}
+
+void Snake::shiftSnakes(int newX, int newY)
+{
+	if (nextSnake != nullptr)
+	{
+		nextSnake->shiftSnakes(x, y);
+	}
+
+	x = newX;
+	y = newY;
 }

@@ -15,6 +15,9 @@ private:
 	
 	int playerNumber;
 	int score;
+
+	bool snakeCreated;
+
 public:
 	Player();
 	Player(int playerNumberInput, int maxCapacityInput);
@@ -32,4 +35,7 @@ public:
 
 	int getScore(void);
 	void setScore(void);
+
+	bool getSnakeCreated(void);
+	void setSnakeCreated(bool newSC);
 };

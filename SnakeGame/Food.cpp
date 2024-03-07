@@ -50,8 +50,8 @@ void Food::draw(sf::RenderWindow& window)
 	sf::RectangleShape food;
 	food.setSize(sf::Vector2f(20, 20));
 	food.setFillColor(sf::Color::Yellow);
-	food.setPosition(x, y);
 	food.setOrigin(10, 10);
+	food.setPosition(x, y);
 	window.draw(food);
 }
 
