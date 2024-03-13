@@ -1,5 +1,6 @@
 #include "Food.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 Food::Food(void)
 {
@@ -9,15 +10,13 @@ Food::Food(void)
 Food::Food(int screenWidth, int screenHeight, int offset)
 {
 	int xMod = screenWidth / 20;
-	xMod *= 20;
-	xMod -= (2 * offset);
+	xMod -= 2;
 
 	int yMod = screenHeight / 20;
-	yMod *= 20;
-	yMod -= (2 * offset);
+	yMod -= 2;
 
-	x = rand() % xMod;
-	y = rand() % yMod;
+	x = (rand() % xMod) * 20;
+	y = (rand() % yMod) * 20;
 
 	x += offset;
 	y += offset;
