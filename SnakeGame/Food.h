@@ -8,7 +8,7 @@ private:
 	bool eaten;
 public:
 	Food(void);
-	Food(int screenWidth, int screenHeight, int offset);
+	Food(int screenWidth, int screenHeight, int offset, int waterCapacity);
 
 	~Food(void);
 
@@ -19,5 +19,6 @@ public:
 	bool getEaten(void);
 
 	void eat(void);
+	void sink(int waterCapacity, int screenHeight);
 };
 

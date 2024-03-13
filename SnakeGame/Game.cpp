@@ -31,7 +31,7 @@ void Game::update()
 	srand(time(0));
 	for (int i = 0; i < 5; i++)
 	{
-		Food* foodInitial = new Food(screenWidth, screenHeight, offset);
+		Food* foodInitial = new Food(screenWidth, screenHeight, offset, waterCapacity);
 		food[i] = foodInitial;
 	}
 
@@ -51,6 +51,11 @@ void Game::update()
 		draw(window);
 
 		foodCollision();
+
+		for (int i = 0; i < 5; i++)
+		{
+			food[i]->sink(waterCapacity, screenHeight);
+		}
 
 		player1->setDirection();
 		sf::Time sleepTime = sf::seconds(moveSpeed);
