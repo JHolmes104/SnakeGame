@@ -116,7 +116,7 @@ int main()
 
 
 
-    Game game(100, 100, 100, 500, 0.2f);
+    Game game(20, 1, 100, 500, 0.2f);
     game.update();
 
     return 0;

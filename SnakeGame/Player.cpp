@@ -1,8 +1,9 @@
 #include "Player.h"
 #include "Snake.h"
+#include "LungBar.h"
 
 #include <SFML/Graphics.hpp>
-
+#include <iostream>
 
 Player::Player()
 {
@@ -18,6 +19,9 @@ Player::Player(int playerNumberInput, int maxCapacityInput)
 	snakeHead = snake;
 	size = 1;
 	direction = 1;
+
+	LungBar* newBar = new LungBar(maxCapacityInput, playerNumberInput);
+	lungbar = newBar;
 }
 
 Player::~Player()
@@ -98,6 +102,7 @@ int Player::getSize(void)
 
 void Player::draw(sf::RenderWindow& window)
 {
+	lungbar->draw(window);
 	snakeHead->draw(window);
 }
 
@@ -123,4 +128,28 @@ bool Player::getSnakeCreated(void)
 void Player::setSnakeCreated(bool newSC)
 {
 	snakeCreated = newSC;
+}
+
+void Player::breathe(int screenHeight, int waterCapacity, int drainRate)
+{
+	if ((screenHeight - waterCapacity) > snakeHead->getY())
+	{
+		currentLungCapacity += (4 * drainRate);
+		if (currentLungCapacity > maxLungCapacity)
+		{
+			currentLungCapacity = maxLungCapacity;
+		}
+	}
+	else
+	{
+
+		currentLungCapacity -= drainRate;
+		if (currentLungCapacity < 0)
+		{
+			currentLungCapacity = 0;
+		}
+	}
+
+	std::cout << currentLungCapacity << std::endl;
+	lungbar->updateCapacity(currentLungCapacity);
 }

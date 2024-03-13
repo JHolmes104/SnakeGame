@@ -64,6 +64,7 @@ void Game::update()
 			player1->move();
 			movementClock.restart();
 			snakeCollision(window);
+			player1->breathe(screenHeight, waterCapacity, capacityDecrease);
 		}
 
 		if (waterDrainClock.getElapsedTime() >= sf::seconds(1.0f))

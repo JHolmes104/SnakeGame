@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+class LungBar;
+
 class Snake;
 
 class Player
@@ -26,6 +28,8 @@ public:
 
 	Snake* snakeHead;
 
+	LungBar* lungbar;
+
 	void setDirection(void);
 
 	void draw(sf::RenderWindow& window);
@@ -38,4 +42,6 @@ public:
 
 	bool getSnakeCreated(void);
 	void setSnakeCreated(bool newSC);
+
+	void breathe(int screenHeight, int waterCap, int drainRate);
 };
