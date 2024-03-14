@@ -15,6 +15,7 @@ private:
 
 	sf::Clock movementClock;
 	sf::Clock waterDrainClock;
+	sf::Clock respawnFoodClock;
 
 	int lungCapacity;
 	int capacityDecrease;
@@ -25,6 +26,8 @@ private:
 	float waterDrainRate;
 
 	float moveSpeed;
+
+	int foodRespawnRate;
 
 	Player* player1;
 
@@ -38,6 +41,8 @@ public:
 
 	void draw(sf::RenderWindow& window);
 	
+	void respawnFood(void);
+
 	int getLungCapacity(void);
 	int getCapacityDecrease(void);
 	int getCapacityIncrease(void);

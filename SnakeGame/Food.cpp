@@ -31,6 +31,25 @@ Food::~Food(void)
 
 }
 
+void Food::initialise(int screenWidth, int screenHeight, int offset, int waterCapacity)
+{
+	int xMod = screenWidth / 20;
+	xMod -= 2;
+
+	int yMod = waterCapacity / 20;
+	yMod -= 2;
+
+	x = (rand() % xMod) * 20;
+	y = (rand() % yMod) * 20;
+
+	y += (screenHeight - waterCapacity);
+
+	x += offset;
+	y += offset;
+
+	eaten = false;
+}
+
 int Food::getX(void)
 {
 	return x;

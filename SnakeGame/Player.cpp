@@ -147,9 +147,8 @@ void Player::breathe(int screenHeight, int waterCapacity, int drainRate)
 		if (currentLungCapacity < 0)
 		{
 			currentLungCapacity = 0;
+			snakeHead->drown();
 		}
 	}
-
-	std::cout << currentLungCapacity << std::endl;
 	lungbar->updateCapacity(currentLungCapacity);
 }

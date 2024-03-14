@@ -35,8 +35,8 @@ void LungBar::draw(sf::RenderWindow& window)
 	sf::RectangleShape fill;
 	fill.setFillColor(playerFillColor);
 	fill.setPosition(xPos + 5, 15);
-	float fillLength = currentCapacity / maxCapacity;
-	fillLength *= 160;
+	int chunkLength = 160 / maxCapacity;
+	int fillLength = currentCapacity * chunkLength;
 	fill.setSize(sf::Vector2f(fillLength, 20));
 
 	window.draw(background);

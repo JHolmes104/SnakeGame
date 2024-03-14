@@ -14,6 +14,8 @@ public:
 
 	void draw(sf::RenderWindow& window);
 	
+	void initialise(int screenWidth, int screenHeight, int offset, int waterCapacity);
+
 	int getX(void);
 	int getY(void);
 	bool getEaten(void);

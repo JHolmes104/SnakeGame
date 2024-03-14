@@ -24,6 +24,8 @@ Game::Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCap
 	player1 = player;
 	movementClock = sf::Clock();
 	waterDrainClock = sf::Clock();
+	respawnFoodClock = sf::Clock();
+	foodRespawnRate = 90;
 }
 
 void Game::update()
@@ -77,6 +79,8 @@ void Game::update()
 		{
 			window.close();
 		}
+
+		respawnFood();
 
 		checkOffscreen(window);
 
@@ -156,6 +160,7 @@ void Game::foodCollision(void)
 				{
 					player1->setScore();
 					food[i]->eat();
+					foodRespawnRate = (rand() % 7) + 3;
 				}
 			}
 		}
@@ -184,5 +189,33 @@ void Game::snakeCollision(sf::RenderWindow& window)
 			}
 			currentSnake = currentSnake->nextSnake;
 		}
+	}
+}
+
+void Game::respawnFood(void)
+{
+	bool foodEaten = false;
+
+	for (int i = 0; i < 5; i++)
+	{
+		if (food[i]->getEaten() == true)
+		{
+			foodEaten = true;
+		}
+	}
+
+	if (respawnFoodClock.getElapsedTime() >= sf::seconds(foodRespawnRate) && foodEaten == true)
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			if (food[i]->getEaten() == true)
+			{
+				food[i]->initialise(screenWidth, screenHeight, offset, waterCapacity);
+				i = 5;
+			}
+		}
+
+		foodRespawnRate = (rand() % 7) + 3;
+		respawnFoodClock.restart();
 	}
 }
