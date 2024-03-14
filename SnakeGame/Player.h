@@ -44,4 +44,6 @@ public:
 	void setSnakeCreated(bool newSC);
 
 	void breathe(int screenHeight, int waterCap, int drainRate);
+
+	void removeEnd(void);
 };

@@ -95,3 +95,16 @@ void Snake::shiftSnakes(int newX, int newY)
 	x = newX;
 	y = newY;
 }
+
+void Snake::removeEnd(void)
+{
+	if (nextSnake->nextSnake != nullptr)
+	{
+		nextSnake->removeEnd();
+	}
+	else
+	{
+		nextSnake->~Snake();
+		nextSnake = nullptr;
+	}
+}

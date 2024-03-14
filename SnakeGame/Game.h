@@ -33,6 +33,8 @@ private:
 
 	sf::Window window;
 
+	bool deadSnake;
+
 public:
 	Game();
 	Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCapInput, float speedInput);

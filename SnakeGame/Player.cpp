@@ -144,11 +144,26 @@ void Player::breathe(int screenHeight, int waterCapacity, int drainRate)
 	{
 
 		currentLungCapacity -= drainRate;
-		if (currentLungCapacity < 0)
+		if (currentLungCapacity <= 0)
 		{
+			std::cout << "Minimimum capacity" << std::endl;
 			currentLungCapacity = 0;
-			snakeHead->drown();
+			removeEnd();
 		}
 	}
 	lungbar->updateCapacity(currentLungCapacity);
+}
+
+void Player::removeEnd(void)
+{
+	if (snakeHead->nextSnake != nullptr)
+	{
+		std::cout << "Removing" << std::endl;
+		snakeHead->removeEnd();
+	}
+	else
+	{
+		snakeHead->~Snake();
+		snakeHead = nullptr;
+	}
 }

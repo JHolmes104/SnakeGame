@@ -29,5 +29,7 @@ public:
 	void draw(sf::RenderWindow& window);
 	void setNextSnake(Snake* newSnake);
 	void shiftSnakes(int newX, int newY);
+
+	void removeEnd(void);
 };
 

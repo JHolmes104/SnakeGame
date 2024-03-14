@@ -26,6 +26,8 @@ Game::Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCap
 	waterDrainClock = sf::Clock();
 	respawnFoodClock = sf::Clock();
 	foodRespawnRate = 90;
+
+	deadSnake = false;
 }
 
 void Game::update()
@@ -69,22 +71,31 @@ void Game::update()
 			player1->breathe(screenHeight, waterCapacity, capacityDecrease);
 		}
 
-		if (waterDrainClock.getElapsedTime() >= sf::seconds(1.0f))
-		{
-			waterCapacity -= waterDrainRate;
-			waterDrainClock.restart();
-		}
-
-		if (waterCapacity == 0)
+		if (player1->snakeHead == nullptr)
 		{
 			window.close();
+			deadSnake = true;
 		}
 
-		respawnFood();
+		if (deadSnake == false)
+		{
+			if (waterDrainClock.getElapsedTime() >= sf::seconds(1.0f))
+			{
+				waterCapacity -= waterDrainRate;
+				waterDrainClock.restart();
+			}
 
-		checkOffscreen(window);
+			if (waterCapacity == 0)
+			{
+				window.close();
+			}
 
-		player1->setSnakeCreated(false);
+			respawnFood();
+
+			checkOffscreen(window);
+
+			player1->setSnakeCreated(false);
+		}
 	}
 }
 
