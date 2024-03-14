@@ -20,8 +20,10 @@ Game::Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCap
 
 	moveSpeed = speedInput;
 
-	Player* player = new Player(1, lungCapacity);
-	player1 = player;
+	Player* player1st = new Player(1, lungCapacity);
+	player1 = player1st;
+
+
 	movementClock = sf::Clock();
 	waterDrainClock = sf::Clock();
 	respawnFoodClock = sf::Clock();
@@ -147,15 +149,20 @@ float Game::getWaterDrainRate(void)
 
 void Game::checkOffscreen(sf::RenderWindow& window)
 {
-	if (player1->snakeHead->getX() <= 0 || player1->snakeHead->getX() >= 800)
+	if (player1->snakeHead->getX() <= 0 || player1->snakeHead->getX() >= screenWidth)
 	{
 		player1->~Player();
 		window.close();
 	}
-	if (player1->snakeHead->getY() <= 0 || player1->snakeHead->getY() >= 600)
+	if (player1->snakeHead->getY() <= 0 || player1->snakeHead->getY() >= screenHeight)
 	{
 		player1->~Player();
 		window.close();
+	}
+
+	if (player1->snakeHead->getY() < (screenHeight - waterCapacity) - 20)
+	{
+		player1->sink();
 	}
 }
 

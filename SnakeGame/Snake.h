@@ -31,5 +31,6 @@ public:
 	void shiftSnakes(int newX, int newY);
 
 	void removeEnd(void);
+	void sink(void);
 };
 

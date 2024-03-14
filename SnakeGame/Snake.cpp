@@ -108,3 +108,12 @@ void Snake::removeEnd(void)
 		nextSnake = nullptr;
 	}
 }
+
+void Snake::sink(void)
+{
+	setY(20);
+	if (nextSnake != nullptr)
+	{
+		nextSnake->sink();
+	}
+}

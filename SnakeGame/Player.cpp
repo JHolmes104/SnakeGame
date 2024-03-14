@@ -167,3 +167,13 @@ void Player::removeEnd(void)
 		snakeHead = nullptr;
 	}
 }
+
+void Player::setDirection(int newDirection)
+{
+	direction = newDirection;
+}
+
+void Player::sink(void)
+{
+	snakeHead->sink();
+}

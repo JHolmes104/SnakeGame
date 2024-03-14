@@ -31,6 +31,7 @@ public:
 	LungBar* lungbar;
 
 	void setDirection(void);
+	void setDirection(int newDirection);
 
 	void draw(sf::RenderWindow& window);
 
@@ -46,4 +47,6 @@ public:
 	void breathe(int screenHeight, int waterCap, int drainRate);
 
 	void removeEnd(void);
+
+	void sink(void);
 };
