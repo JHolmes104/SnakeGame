@@ -23,7 +23,7 @@ Food::Food(int screenWidth, int screenHeight, int offset, int waterCapacity)
 	x += offset;
 	y += offset;
 
-	eaten = false;
+	eaten = true;
 }
 
 Food::~Food(void)

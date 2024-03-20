@@ -23,11 +23,10 @@ Game::Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCap
 	Player* player1st = new Player(1, lungCapacity);
 	player1 = player1st;
 
-
 	movementClock = sf::Clock();
 	waterDrainClock = sf::Clock();
 	respawnFoodClock = sf::Clock();
-	foodRespawnRate = 90;
+	foodRespawnRate = 1;
 
 	deadSnake = false;
 }
