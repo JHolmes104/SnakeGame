@@ -23,6 +23,9 @@ Game::Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCap
 	Player* player1st = new Player(1, lungCapacity);
 	player1 = player1st;
 
+	Player* player2nd = new Player(2, lungCapacity);
+	player2 = player2nd;
+
 	movementClock = sf::Clock();
 	waterDrainClock = sf::Clock();
 	respawnFoodClock = sf::Clock();
@@ -115,6 +118,8 @@ void Game::draw(sf::RenderWindow& window)
 	window.draw(water);
 	
 	player1->draw(window);
+
+	player2->draw(window);
 
 	for (int i = 0; i < 5; i++)
 	{

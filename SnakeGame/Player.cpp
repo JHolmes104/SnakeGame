@@ -19,7 +19,6 @@ Player::Player(int playerNumberInput, int maxCapacityInput)
 	snakeHead = snake;
 	size = 1;
 	direction = 1;
-	nextDirection = 1;
 
 	score = 0;
 

@@ -30,6 +30,7 @@ private:
 	int foodRespawnRate;
 
 	Player* player1;
+	Player* player2;
 
 	sf::Window window;
 

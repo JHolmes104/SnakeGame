@@ -10,6 +10,7 @@ private:
 	bool inWater;
 	int playerNumber;
 
+	sf::Color playerColor;
 public:
 	Snake(void);
 	Snake(int xInput, int yInput, int playerInput);

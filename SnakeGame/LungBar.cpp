@@ -22,6 +22,7 @@ LungBar::LungBar(int capacity, int playerNum)
 	{
 		playerFillColor = sf::Color(255, 0, 0, 255);
 		playerOutlineColor = sf::Color(128, 0, 0, 255);
+		xPos = 620;
 	}
 }
 

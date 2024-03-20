@@ -18,6 +18,20 @@ Snake::Snake(int xInput, int yInput, int playerInput)
 	playerNumber = playerInput;
 	inWater = false;
 	nextSnake = nullptr;
+
+	playerColor == sf::Color::Green;
+
+	if (playerInput == 1)
+	{
+		std::cout << "Player 1 is green" << std::endl;
+		playerColor == sf::Color::Green;
+	}
+
+	else
+	{
+		std::cout << "Player 2 is red" << std::endl;
+		playerColor == sf::Color::Red;
+	}
 }
 
 Snake::~Snake()
@@ -57,7 +71,7 @@ void Snake::draw(sf::RenderWindow& window)
 {
 	sf::RectangleShape snake;
 	snake.setSize(sf::Vector2f(20, 20));
-	snake.setFillColor(sf::Color::Green);
+	snake.setFillColor(playerColor);
 	snake.setOrigin(10, 10);
 	snake.setPosition(getX(), getY());
 	window.draw(snake);
