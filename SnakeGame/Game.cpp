@@ -239,4 +239,21 @@ void Game::respawnFood(void)
 		foodRespawnRate = (rand() % 7) + 3;
 		respawnFoodClock.restart();
 	}
+
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			if (i != j)
+			{
+				if (food[i]->getX() == food[j]->getX())
+				{
+					if (food[i]->getY() == food[j]->getY())
+					{
+						food[j]->initialise(screenWidth, screenHeight, offset, waterCapacity);
+					}
+				}
+			}
+		}
+	}
 }
