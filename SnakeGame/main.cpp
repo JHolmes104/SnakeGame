@@ -74,9 +74,9 @@ int main()
 
     sf::Time startTime = clock.getElapsedTime();
     startTime.asSeconds();
-    int count = 0;*/
+    int count = 0;
 
-    /*while (window.isOpen())
+    while (window.isOpen())
     {
         sf::Event event;
         window.pollEvent(event);

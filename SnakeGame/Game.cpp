@@ -62,7 +62,7 @@ void Game::update()
 			food[i]->sink(waterCapacity, screenHeight);
 		}
 
-		player1->setDirection();
+		player1->getInputs();
 		sf::Time sleepTime = sf::seconds(moveSpeed);
 		if (movementClock.getElapsedTime() >= sleepTime)
 		{
@@ -91,7 +91,11 @@ void Game::update()
 				window.close();
 			}
 
-			respawnFood();
+			if (waterCapacity > 60)
+			{
+
+				respawnFood();
+			}
 
 			checkOffscreen(window);
 

@@ -12,6 +12,8 @@ private:
 	int direction;
 	int size;
 
+	bool hasChangedDirection;
+
 	int currentLungCapacity;
 	int maxLungCapacity;
 	
@@ -30,7 +32,8 @@ public:
 
 	LungBar* lungbar;
 
-	void setDirection(void);
+	void getInputs(void);
+
 	void setDirection(int newDirection);
 
 	void draw(sf::RenderWindow& window);

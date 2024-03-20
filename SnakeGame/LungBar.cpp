@@ -39,11 +39,23 @@ void LungBar::draw(sf::RenderWindow& window)
 	int fillLength = currentCapacity * chunkLength;
 	fill.setSize(sf::Vector2f(fillLength, 20));
 
+	sf::Font snakeFont;
+	snakeFont.loadFromFile("SnakeChan-YdV8.ttf");
+
+	sf::Text scoreText;
+	scoreText.setFont(snakeFont);
+	scoreText.setString("Score: " + std::to_string(score));
+	scoreText.setCharacterSize(20);
+	scoreText.setFillColor(sf::Color::Black);
+	scoreText.setPosition(xPos + 5, 15);
+
 	window.draw(background);
 	window.draw(fill);
+	window.draw(scoreText);
 }
 
-void LungBar::updateCapacity(int capacity)
+void LungBar::updateStats(int capacity, int newScore)
 {
 	currentCapacity = capacity;
+	score = newScore;
 }

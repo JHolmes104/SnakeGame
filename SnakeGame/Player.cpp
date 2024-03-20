@@ -19,6 +19,9 @@ Player::Player(int playerNumberInput, int maxCapacityInput)
 	snakeHead = snake;
 	size = 1;
 	direction = 1;
+	nextDirection = 1;
+
+	score = 0;
 
 	LungBar* newBar = new LungBar(maxCapacityInput, playerNumberInput);
 	lungbar = newBar;
@@ -29,46 +32,54 @@ Player::~Player()
 	snakeHead->~Snake();
 }
 
-void Player::setDirection()
+void Player::getInputs()
 {
 	// 1 = Up, 2 = Right, 3 = Down, 4 = Left.
-	if (playerNumber == 1)
+	if (playerNumber == 1 && hasChangedDirection == false)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && direction != 3)
 		{
 			direction = 1;
+			hasChangedDirection = true;
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && direction != 4)
 		{
 			direction = 2;
+			hasChangedDirection = true;
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && direction != 1)
 		{
 			direction = 3;
+			hasChangedDirection = true;
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && direction != 2)
 		{
 			direction = 4;
+			hasChangedDirection = true;
 		}
 	}
 
-	else if (playerNumber == 2)
+	else if (playerNumber == 2 && hasChangedDirection == false)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && direction != 3)
 		{
 			direction = 1;
+			hasChangedDirection = true;
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && direction != 4)
 		{
 			direction = 2;
+			hasChangedDirection = true;
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && direction != 1)
 		{
 			direction = 3;
+			hasChangedDirection = true;
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && direction != 2)
 		{
 			direction = 4;
+			hasChangedDirection = true;
 		}
 	}
 }
@@ -80,15 +91,19 @@ void Player::move(void)
 	{
 	case 1:
 		snakeHead->setY(-20);
+		hasChangedDirection = false;
 		break;
 	case 2:
 		snakeHead->setX(20);
+		hasChangedDirection = false;
 		break;
 	case 3:
 		snakeHead->setY(20);
+		hasChangedDirection = false;
 		break;
 	case 4:
 		snakeHead->setX(-20);
+		hasChangedDirection = false;
 		break;
 	default:
 		break;
@@ -151,7 +166,7 @@ void Player::breathe(int screenHeight, int waterCapacity, int drainRate)
 			removeEnd();
 		}
 	}
-	lungbar->updateCapacity(currentLungCapacity);
+	lungbar->updateStats(currentLungCapacity, score);
 }
 
 void Player::removeEnd(void)

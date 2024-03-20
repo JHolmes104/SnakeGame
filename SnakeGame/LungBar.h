@@ -7,6 +7,7 @@ private:
 	int maxCapacity;
 	int currentCapacity;
 	int xPos;
+	int score;
 
 	sf::Color playerFillColor;
 	sf::Color playerOutlineColor;
@@ -15,6 +16,6 @@ public:
 	LungBar();
 	LungBar(int capacity, int playerNum);
 	void draw(sf::RenderWindow& window);
-	void updateCapacity(int capacity);
+	void updateStats(int capacity, int newScore);
 };
 
