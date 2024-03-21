@@ -16,7 +16,9 @@ Game::Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCap
 	
 	waterCapacity = wCapInput;
 	maxWaterCapacity = wCapInput;
-	waterDrainRate = waterCapacity / 90;
+	int waterDrainAmount = waterCapacity / 20;
+	waterDrainRate = 90 / waterDrainAmount;
+	std::cout << waterDrainRate << std::endl;
 
 	moveSpeed = speedInput;
 
@@ -92,9 +94,9 @@ void Game::update()
 
 		if (deadSnake == false)
 		{
-			if (waterDrainClock.getElapsedTime() >= sf::seconds(1.0f))
+			if (waterDrainClock.getElapsedTime() >= sf::seconds(waterDrainRate))
 			{
-				waterCapacity -= waterDrainRate;
+				waterCapacity -= 20;
 				waterDrainClock.restart();
 			}
 
