@@ -15,8 +15,17 @@ Player::Player(int playerNumberInput, int maxCapacityInput)
 	playerNumber = playerNumberInput;
 	currentLungCapacity = maxCapacityInput;
 	maxLungCapacity = maxCapacityInput;
-	Snake* snake = new Snake(100, 100, playerNumberInput);
-	snakeHead = snake;
+	if (playerNumber == 1)
+	{
+		Snake* snake = new Snake(100, 100, playerNumberInput);
+		snakeHead = snake;
+	}
+
+	else if (playerNumber == 2)
+	{
+		Snake* snake = new Snake(700, 100, playerNumberInput);
+		snakeHead = snake;
+	}
 	size = 1;
 	direction = 1;
 
@@ -185,9 +194,4 @@ void Player::removeEnd(void)
 void Player::setDirection(int newDirection)
 {
 	direction = newDirection;
-}
-
-void Player::sink(void)
-{
-	snakeHead->sink();
 }

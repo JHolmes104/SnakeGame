@@ -19,18 +19,16 @@ Snake::Snake(int xInput, int yInput, int playerInput)
 	inWater = false;
 	nextSnake = nullptr;
 
-	playerColor == sf::Color::Green;
-
-	if (playerInput == 1)
+	if (playerNumber == 1)
 	{
 		std::cout << "Player 1 is green" << std::endl;
-		playerColor == sf::Color::Green;
+		playerColor = sf::Color(0, 255, 0, 255);
 	}
 
-	else
+	else if (playerNumber == 2)
 	{
 		std::cout << "Player 2 is red" << std::endl;
-		playerColor == sf::Color::Red;
+		playerColor = sf::Color(255, 0, 0, 255);
 	}
 }
 

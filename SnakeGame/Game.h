@@ -46,13 +46,6 @@ public:
 	
 	void respawnFood(void);
 
-	int getLungCapacity(void);
-	int getCapacityDecrease(void);
-	int getCapacityIncrease(void);
-
-	int getWaterCapacity(void);
-	float getWaterDrainRate(void);
-
 	void checkOffscreen(sf::RenderWindow& window);
 	void foodCollision(void);
 	void snakeCollision(sf::RenderWindow& window);
