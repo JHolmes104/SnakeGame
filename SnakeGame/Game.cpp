@@ -45,7 +45,7 @@ void Game::update()
 		food[i] = foodInitial;
 	}
 
-	sf::RenderWindow window(sf::VideoMode(800, 600), "GameWindow");
+	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "GameWindow");
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -75,7 +75,9 @@ void Game::update()
 			player1->move();
 			player2->move();
 			movementClock.restart();
+
 			snakeCollision(window);
+
 			player1->breathe(screenHeight, waterCapacity, capacityDecrease);
 			player2->breathe(screenHeight, waterCapacity, capacityDecrease);
 		}
