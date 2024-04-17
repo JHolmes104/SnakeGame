@@ -332,7 +332,7 @@ void Game::respawnFood(void)
 			}
 		}
 
-		foodRespawnRate = (rand() % 7) + 3;
+		foodRespawnRate = (rand() % 3) + 3;
 		respawnFoodClock.restart();
 	}
 

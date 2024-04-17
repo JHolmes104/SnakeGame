@@ -10,6 +10,7 @@ private:
 	void update(void);
 	void initialiseShapes(void);
 	void draw(sf::RenderWindow& window);
+	void mouseInputs(sf::RenderWindow& window);
 
 	sf::Font snakeFont;
 	sf::Color winnerColor;

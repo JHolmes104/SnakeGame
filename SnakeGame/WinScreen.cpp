@@ -33,6 +33,7 @@ void WinScreen::update(void)
 	while (window.isOpen())
 	{
 		draw(window);
+		mouseInputs(window);
 
 		sf::Event event;
 		window.pollEvent(event);
@@ -95,4 +96,23 @@ void WinScreen::initialiseShapes(void)
 	mainMenuBackground.setPosition(sf::Vector2f(310, 410));
 	mainMenuBackground.setSize(sf::Vector2f(180, 70));
 	mainMenuBackground.setFillColor(sf::Color(128, 0, 0));
+}
+
+void WinScreen::mouseInputs(sf::RenderWindow& window)
+{
+	sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+
+	int x = mousePos.x;
+	int y = mousePos.y;
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		if (x >= 310 && x <= 490)
+		{
+			if (y >= 410 && y <= 480)
+			{
+				window.close();
+				MainMenu mainMenu();
+			}
+		}
+	}
 }
