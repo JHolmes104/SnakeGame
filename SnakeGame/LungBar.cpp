@@ -11,6 +11,9 @@ LungBar::LungBar(int capacity, int playerNum)
 	maxCapacity = capacity;
 	currentCapacity = capacity;
 
+	snakeFont.loadFromFile("SnakeChan-YdV8.ttf");
+
+	if (playerNum == 1)
 	if (playerNum == 1)
 	{
 		playerFillColor = sf::Color(0,255, 0, 255);
@@ -39,9 +42,6 @@ void LungBar::draw(sf::RenderWindow& window)
 	int chunkLength = 160 / maxCapacity;
 	int fillLength = currentCapacity * chunkLength;
 	fill.setSize(sf::Vector2f(fillLength, 20));
-
-	sf::Font snakeFont;
-	snakeFont.loadFromFile("SnakeChan-YdV8.ttf");
 
 	sf::Text scoreText;
 	scoreText.setFont(snakeFont);

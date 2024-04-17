@@ -9,6 +9,7 @@ private:
 	int xPos;
 	int score;
 
+	sf::Font snakeFont;
 	sf::Color playerFillColor;
 	sf::Color playerOutlineColor;
 

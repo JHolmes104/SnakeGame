@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Snake.h"
 #include "Food.h"
+#include "WinScreen.h"
 
 #include <iostream>
 #include <sstream>
@@ -152,11 +153,13 @@ void Game::checkOffscreen(sf::RenderWindow& window)
 	{
 		player1->~Player();
 		window.close();
+		WinScreen winscreen = WinScreen(2, player2->getScore());
 	}
 	if (player1->snakeHead->getY() <= 0 || player1->snakeHead->getY() >= screenHeight)
 	{
 		player1->~Player();
 		window.close();
+		WinScreen winscreen = WinScreen(2, player2->getScore());
 	}
 	if (player1->snakeHead->getY() < (screenHeight - waterCapacity) - 20)
 	{
@@ -167,11 +170,13 @@ void Game::checkOffscreen(sf::RenderWindow& window)
 	{
 		player2->~Player();
 		window.close();
+		WinScreen winscreen = WinScreen(1, player1->getScore());
 	}
 	if (player2->snakeHead->getY() <= 0 || player2->snakeHead->getY() >= screenHeight)
 	{
 		player2->~Player();
 		window.close();
+		WinScreen winscreen = WinScreen(1, player1->getScore());
 	}
 
 	if (player2->snakeHead->getY() < (screenHeight - waterCapacity) - 20)
@@ -227,6 +232,7 @@ void Game::snakeCollision(sf::RenderWindow& window)
 					player1->~Player();
 					window.close();
 					std::cout << "Collision detected";
+					WinScreen winscreen = WinScreen(2, player2->getScore());
 				}
 			}
 			currentSnake = currentSnake->nextSnake;
@@ -242,6 +248,7 @@ void Game::snakeCollision(sf::RenderWindow& window)
 					player2->~Player();
 					window.close();
 					std::cout << "Collision detected";
+					WinScreen winscreen = WinScreen(2, player2->getScore());
 				}
 			}
 			currentSnake = currentSnake->nextSnake;
@@ -262,9 +269,9 @@ void Game::snakeCollision(sf::RenderWindow& window)
 				if (sHead->getY() < (currentSnake->getY() + 15) && sHead->getY() > (currentSnake->getY() - 15))
 				{
 					player2->~Player();
-					player1->~Player();
 					window.close();
 					std::cout << "Collision detected";
+					WinScreen winscreen = WinScreen(1, player1->getScore());
 				}
 			}
 			currentSnake = currentSnake->nextSnake;
@@ -275,12 +282,15 @@ void Game::snakeCollision(sf::RenderWindow& window)
 		{
 			if (sHead->getY() < (currentSnake->getY() + 15) && sHead->getY() > (currentSnake->getY() - 15))
 			{
+				player1->~Player();
 				player2->~Player();
 				window.close();
 				std::cout << "Head on collision detected";
+				WinScreen winscreen = WinScreen(0, player1->getScore());
 			}
 		}
 
+		currentSnake = player1->snakeHead->nextSnake;
 		while (currentSnake != nullptr)
 		{
 			if (sHead->getX() < (currentSnake->getX() + 15) && sHead->getX() > (currentSnake->getX() - 15))
@@ -290,6 +300,8 @@ void Game::snakeCollision(sf::RenderWindow& window)
 					player2->~Player();
 					window.close();
 					std::cout << "Collision detected";
+					WinScreen winscreen = WinScreen(1, player1->getScore());
+
 				}
 			}
 			currentSnake = currentSnake->nextSnake;

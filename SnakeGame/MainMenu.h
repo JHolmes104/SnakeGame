@@ -13,9 +13,6 @@ int constexpr maxExitX = 600;
 int constexpr minExitY = 400;
 int constexpr maxExitY = 500;
 
-int constexpr screenWidth = 800;
-int constexpr screenHeight = 600;
-
 class MainMenu
 {
 private:
