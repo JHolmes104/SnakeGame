@@ -111,7 +111,7 @@ void WinScreen::mouseInputs(sf::RenderWindow& window)
 			if (y >= 410 && y <= 480)
 			{
 				window.close();
-				MainMenu mainMenu();
+				MainMenu();
 			}
 		}
 	}

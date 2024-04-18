@@ -1,10 +1,12 @@
 #include "MainMenu.h"
 #include "Game.h"
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
 
 MainMenu::MainMenu()
 {
+	std::cout << "New Main Menu" << std::endl;
 	update();
 }
 
@@ -16,6 +18,7 @@ void MainMenu::update(void)
 	while (window.isOpen())
 	{ 
 		draw(window);
+		mouseInputs(window);
 
 		sf::Event event;
 		window.pollEvent(event);
@@ -62,6 +65,21 @@ void MainMenu::initialiseShapes()
 
 void MainMenu::mouseInputs(sf::RenderWindow& window)
 {
+	sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+
+	int x = mousePos.x;
+	int y = mousePos.y;
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		if (x >= 265 && x <= 530)
+		{
+			if (y >= 285 && y <= 350)
+			{
+				window.close();
+				startGame();
+			}
+		}
+	}
 }
 
 void MainMenu::startGame(void)
