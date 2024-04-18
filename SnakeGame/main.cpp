@@ -9,6 +9,7 @@
 #include <iostream>
 #include <sstream>
 #include "Game.h"
+#include "MainMenu.h"
 
 // SFML header file for graphics, there are also ones for Audio, Window, System and Network
 #include <SFML/Graphics.hpp>
@@ -114,10 +115,10 @@ int main()
 
     std::cout << "SnakeGame: Finished" << std::endl;*/
 
+    MainMenu();
 
-
-    Game game(20, 1, 100, 500, 0.2f);
-    game.update();
+    //Game game(20, 1, 100, 500, 0.2f);
+    //game.update();
 
     return 0;
 }

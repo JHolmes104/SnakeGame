@@ -17,11 +17,17 @@ class MainMenu
 {
 private:
 	void startGame(void);
-	void closeGame(void);
 
 	void draw(sf::RenderWindow& window);
 
-	void getInputs(void);
+	void mouseInputs(sf::RenderWindow& window);
+
+	void initialiseShapes(void);
+
+	sf::Font snakeFont;
+	sf::Text titleText;
+	sf::Text gameText;
+	sf::RectangleShape gameBox;
 
 public:
 	MainMenu(void);

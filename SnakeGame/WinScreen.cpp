@@ -7,8 +7,6 @@ WinScreen::WinScreen(int winnerInput, int scoreInput)
 	winner = winnerInput;
 	score = scoreInput;
 
-	snakeFont.loadFromFile("SnakeChan-YdV8.ttf");
-
 	if (winner == 0)
 	{
 		winnerColor = sf::Color::White;
@@ -60,6 +58,8 @@ void WinScreen::draw(sf::RenderWindow& window)
 
 void WinScreen::initialiseShapes(void)
 {
+	snakeFont.loadFromFile("SnakeChan-YdV8.ttf");
+
 	if (winner == 0)
 	{
 		winnerText.setString("Draw");
