@@ -2,11 +2,13 @@
 #include "Game.h"
 
 #include <iostream>
+#include <fstream>
 #include <SFML/Graphics.hpp>
 
 MainMenu::MainMenu()
 {
 	std::cout << "New Main Menu" << std::endl;
+	setGameStats();
 	update();
 }
 
@@ -86,4 +88,19 @@ void MainMenu::startGame(void)
 {
 	Game game(20, 1, 100, 500, 0.2f);
 	game.update();
+}
+
+void MainMenu::setGameStats(void)
+{
+	std::ofstream output;
+	output.open("default.txt");
+	if (output.fail())
+	{
+		std::cout << "File could not be loaded";
+	}
+	else
+	{
+		output << "20\t1\t100\t500\t0.2f";
+		output.close();
+	}
 }

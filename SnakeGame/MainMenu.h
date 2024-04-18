@@ -22,6 +22,8 @@ private:
 
 	void mouseInputs(sf::RenderWindow& window);
 
+	void setGameStats(void);
+
 	void initialiseShapes(void);
 
 	sf::Font snakeFont;
