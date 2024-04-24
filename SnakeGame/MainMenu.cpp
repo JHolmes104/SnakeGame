@@ -86,21 +86,21 @@ void MainMenu::mouseInputs(sf::RenderWindow& window)
 
 void MainMenu::startGame(void)
 {
-	Game game(20, 1, 100, 500, 0.2f);
+	Game game(20, 1, 500, 0.2f);
 	game.update();
 }
 
 void MainMenu::setGameStats(void)
 {
 	std::ofstream output;
-	output.open("default.txt");
+	output.open("savedMods.txt");
 	if (output.fail())
 	{
 		std::cout << "File could not be loaded";
 	}
 	else
 	{
-		output << "20\t1\t100\t500\t0.2f";
+		output << "20\t1\t500\t0.2f";
 		output.close();
 	}
 }

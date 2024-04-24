@@ -9,11 +9,10 @@
 
 #include <SFML/Graphics.hpp>
 
-Game::Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCapInput, float speedInput)
+Game::Game(int lCapInput, int lCapDecreaseInput, int wCapInput, float speedInput)
 {
 	lungCapacity = lCapInput;
 	capacityDecrease = lCapDecreaseInput;
-	capacityIncrease = lCapIncreaseInput;
 	
 	waterCapacity = wCapInput;
 	maxWaterCapacity = wCapInput;

@@ -19,7 +19,6 @@ private:
 
 	int lungCapacity;
 	int capacityDecrease;
-	int capacityIncrease;
 	
 	int waterCapacity;
 	int maxWaterCapacity;
@@ -38,7 +37,7 @@ private:
 
 public:
 	Game();
-	Game(int lCapInput, int lCapDecreaseInput, int lCapIncreaseInput, int wCapInput, float speedInput);
+	Game(int lCapInput, int lCapDecreaseInput, int wCapInput, float speedInput);
 
 	void update(void);
 
