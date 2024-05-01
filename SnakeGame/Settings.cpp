@@ -240,18 +240,25 @@ void Settings::mousePress(sf::RenderWindow& window)
 		switch (mousePos)
 		{
 		case eMousePositions::elungCap:
+			changeLungCap();
 			break;
 		case eMousePositions::eLungDec:
+			changeLungDec();
 			break;
 		case eMousePositions::eWater:
+			changeWaterCap();
 			break;
 		case eMousePositions::eMove:
+			changeMoveSpeed();
 			break;
 		case eMousePositions::eSave:
+			saveModifiers();
 			break;
 		case eMousePositions::eLoad:
+			restoreDefaults();
 			break;
 		case eMousePositions::eClose:
+			MainMenu();
 			break;
 		default:
 			break;
@@ -267,6 +274,8 @@ void Settings::restoreDefaults(void)
 	input >> lungCap >> lungDecrease >> waterCap >> moveSpeed;
 
 	input.close();
+
+	initialiseShapes();
 }
 
 void Settings::saveModifiers(void)
@@ -282,4 +291,36 @@ void Settings::saveModifiers(void)
 		output << lungCap << "\t" << lungDecrease << "\t" << waterCap << "\t" << moveSpeed;
 		output.close();
 	}
+}
+
+void Settings::changeLungCap()
+{
+	std::cout << "Enter The New Value Here:" << std::endl;
+	std::cin >> lungCap;
+
+	initialiseShapes();
+}
+
+void Settings::changeLungDec()
+{
+	std::cout << "Enter The New Value Here:" << std::endl;
+	std::cin >> lungDecrease;
+
+	initialiseShapes();
+}
+
+void Settings::changeWaterCap()
+{
+	std::cout << "Enter The New Value Here:" << std::endl;
+	std::cin >> waterCap;
+
+	initialiseShapes();
+}
+
+void Settings::changeMoveSpeed()
+{
+	std::cout << "Enter The New Value Here:" << std::endl;
+	std::cin >> moveSpeed;
+
+	initialiseShapes();
 }
