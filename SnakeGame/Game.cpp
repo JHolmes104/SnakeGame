@@ -85,13 +85,13 @@ void Game::update()
 		if (player1->snakeHead == nullptr)
 		{
 			window.close();
-			deadSnake = true;
+			WinScreen winscreen = WinScreen(2, player2->getScore());
 		}
 
 		if (player2->snakeHead == nullptr)
 		{
 			window.close();
-			deadSnake = true;
+			WinScreen winscreen = WinScreen(1, player1->getScore());
 		}
 
 		if (deadSnake == false)
