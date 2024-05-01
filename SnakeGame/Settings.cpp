@@ -1,5 +1,7 @@
 #include "Settings.h"
+
 #include <SFML/Graphics.hpp>
+#include "MainMenu.h"
 
 #include <iostream>
 #include <fstream>
@@ -8,6 +10,7 @@ Settings::Settings(void)
 {
 	loadCurrentSave();
 	update();
+	clickClock.restart();
 }
 
 void Settings::loadCurrentSave(void)
@@ -28,6 +31,7 @@ void Settings::update(void)
 	while (window.isOpen())
 	{
 		draw(window);
+		mousePress(window);
 
 		sf::Event event;
 		window.pollEvent(event);
@@ -229,8 +233,9 @@ Settings::eMousePositions Settings::getMousePosition(sf::RenderWindow& window)
 
 void Settings::mousePress(sf::RenderWindow& window)
 {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && clickClock.getElapsedTime().asSeconds() >= clickRate)
 	{
+		clickClock.restart();
 		eMousePositions mousePos = getMousePosition(window);
 		switch (mousePos)
 		{
@@ -262,4 +267,19 @@ void Settings::restoreDefaults(void)
 	input >> lungCap >> lungDecrease >> waterCap >> moveSpeed;
 
 	input.close();
+}
+
+void Settings::saveModifiers(void)
+{
+	std::ofstream output;
+	output.open("savedMods.txt");
+	if (output.fail())
+	{
+		std::cout << "File could not be loaded";
+	}
+	else
+	{
+		output << lungCap << "\t" << lungDecrease << "\t" << waterCap << "\t" << moveSpeed;
+		output.close();
+	}
 }

@@ -18,13 +18,15 @@ private:
 
 	void saveModifiers(void);
 	void restoreDefaults(void);
-	void returnToMainMenu(void);
 	void loadCurrentSave(void);
 
 	int lungCap;
 	int lungDecrease;
 	int waterCap;
 	float moveSpeed;
+
+	sf::Clock clickClock;
+	float clickRate = 0.5;
 
 	void changeLungCap(void);
 	void changeLungDec(void);
@@ -57,8 +59,6 @@ private:
 	eMousePositions getMousePosition(sf::RenderWindow& window);
 	void mousePress(sf::RenderWindow& window);
 
-	void restoreDefaults(void);
-	void saveModifiers(void);
 public:
 	Settings(void);
 };

@@ -8,7 +8,6 @@
 MainMenu::MainMenu()
 {
 	std::cout << "New Main Menu" << std::endl;
-	setGameStats();
 	update();
 }
 
@@ -86,7 +85,8 @@ void MainMenu::mouseInputs(sf::RenderWindow& window)
 
 void MainMenu::startGame(void)
 {
-	Game game(20, 1, 500, 0.2f);
+	loadModifiers();
+	Game game(lungCap, lungDecrease, waterCap, moveSpeed);
 	game.update();
 }
 
@@ -103,4 +103,14 @@ void MainMenu::setGameStats(void)
 		output << "20\t1\t500\t0.2f";
 		output.close();
 	}
+}
+
+void MainMenu::loadModifiers(void)
+{
+	std::ifstream input;
+	input.open("savedMods.txt");
+
+	input >> lungCap >> lungDecrease >> waterCap >> moveSpeed;
+
+	input.close();
 }
