@@ -116,8 +116,8 @@ int main()
 
     std::cout << "SnakeGame: Finished" << std::endl;*/
 
-    //MainMenu();
-    Settings();
+    MainMenu();
+    //Settings();
     //Game game(20, 1, 100, 500, 0.2f);
     //game.update();
 

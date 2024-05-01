@@ -258,6 +258,7 @@ void Settings::mousePress(sf::RenderWindow& window)
 			restoreDefaults();
 			break;
 		case eMousePositions::eClose:
+			window.close();
 			MainMenu();
 			break;
 		default:

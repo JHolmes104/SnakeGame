@@ -1,5 +1,7 @@
 #include "MainMenu.h"
+
 #include "Game.h"
+#include "Settings.h"
 
 #include <iostream>
 #include <fstream>
@@ -38,8 +40,13 @@ void MainMenu::draw(sf::RenderWindow& window)
 {
 	window.clear(sf::Color::Black);
 	window.draw(titleText);
+
 	window.draw(gameBox);
 	window.draw(gameText);
+	
+	window.draw(settingsBox);
+	window.draw(settingsText);
+
 	window.display();
 }
 
@@ -62,6 +69,16 @@ void MainMenu::initialiseShapes()
 	gameBox.setPosition(sf::Vector2f(265, 285));
 	gameBox.setSize(sf::Vector2f(265, 65));
 	gameBox.setFillColor(sf::Color(0, 128, 0));
+
+	settingsText.setString("Settings");
+	settingsText.setFont(snakeFont);
+	settingsText.setCharacterSize(30);
+	settingsText.setFillColor(sf::Color::Cyan);
+	settingsText.setPosition(310, 450);
+
+	settingsBox.setPosition(265, 435);
+	settingsBox.setSize(sf::Vector2f(265, 65));
+	settingsBox.setFillColor(sf::Color::Blue);
 }
 
 void MainMenu::mouseInputs(sf::RenderWindow& window)
@@ -78,6 +95,12 @@ void MainMenu::mouseInputs(sf::RenderWindow& window)
 			{
 				window.close();
 				startGame();
+			}
+
+			if (y >= 435 && y <= 500)
+			{
+				window.close();
+				Settings();
 			}
 		}
 	}

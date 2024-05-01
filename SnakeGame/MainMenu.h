@@ -17,7 +17,10 @@ private:
 	sf::Font snakeFont;
 	sf::Text titleText;
 	sf::Text gameText;
+	sf::Text settingsText;
+	
 	sf::RectangleShape gameBox;
+	sf::RectangleShape settingsBox;
 
 	int lungCap;
 	int lungDecrease;
