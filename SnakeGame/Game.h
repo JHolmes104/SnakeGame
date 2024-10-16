@@ -31,8 +31,6 @@ private:
 	Player* player1;
 	Player* player2;
 
-	sf::Window window;
-
 	bool deadSnake;
 
 public:

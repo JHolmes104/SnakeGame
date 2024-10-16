@@ -107,6 +107,20 @@ void Game::update()
 			if (waterCapacity == 0)
 			{
 				window.close();
+				
+				if (player1->getScore() == player2->getScore())
+				{
+					WinScreen(0, player1->getScore());
+				}
+
+				else if (player1->getScore() < player2->getScore())
+				{
+					WinScreen(1, player1->getScore());
+				}
+				else if (player1->getScore() > player2->getScore())
+				{
+					WinScreen(2, player2->getScore());
+				}
 			}
 
 			if (waterCapacity > 60)

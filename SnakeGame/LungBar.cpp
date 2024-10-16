@@ -14,7 +14,6 @@ LungBar::LungBar(int capacity, int playerNum)
 	snakeFont.loadFromFile("SnakeChan-YdV8.ttf");
 
 	if (playerNum == 1)
-	if (playerNum == 1)
 	{
 		playerFillColor = sf::Color(0,255, 0, 255);
 		playerOutlineColor = sf::Color(0, 128, 0, 255);
